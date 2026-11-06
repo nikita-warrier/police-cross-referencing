@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A simple workspace for organizing cases." />
+    <title>Casework</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <a class="brand" href="#" aria-label="Casework home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9" /></svg>
+          </span>
+          <span>Casework</span>
+        </a>
+      </header>
+
+      <section class="cases" aria-labelledby="page-title">
+        <div class="page-heading">
+          <div>
+            <h1 id="page-title">Cases</h1>
+            <p>Your cases and their evidence.</p>
+          </div>
+          <button class="add-button" id="open-form" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+            Add a case
+          </button>
+        </div>
+
+        <div class="case-list" id="case-list" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state">
+          <span>No cases yet</span>
+          <p>Add a case to get started.</p>
+        </div>
+      </section>
+
+      <p class="prototype-note">Prototype only: case details are saved in this browser. Evidence files are not uploaded or securely stored.</p>
+    </main>
+
+    <dialog class="case-dialog" id="case-dialog" aria-labelledby="dialog-title">
+      <form id="case-form">
+        <div class="dialog-heading">
+          <div>
+            <h2 id="dialog-title">Add a case</h2>
+            <p>Enter the case details and choose any processed evidence.</p>
+          </div>
+          <button class="close-button" id="close-form" type="button" aria-label="Close">×</button>
+        </div>
+
+        <label class="field">
+          <span>Case name</span>
+          <input name="name" required maxlength="90" placeholder="Enter a case name" />
+        </label>
+        <label class="field">
+          <span>Case number</span>
+          <input name="number" required maxlength="32" placeholder="Enter a case number" />
+        </label>
+        <label class="field">
+          <span>Evidence <span class="optional">(optional)</span></span>
+          <input id="evidence" name="evidence" type="file" multiple accept="image/*,audio/*,video/*,.pdf,.txt,.doc,.docx,.rtf,.csv" />
+          <span class="help">Images, audio, video, and documents</span>
+        </label>
+
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button class="cancel-button" id="cancel-form" type="button">Cancel</button>
+          <button class="add-button" type="submit">Save case</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
